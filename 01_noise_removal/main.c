@@ -5,16 +5,20 @@
 #define NUM_TAPS 29
 #define BLOCK_SIZE 32
 
+#define SIG_LENGTH_2 301
+
 uint32_t numBlocks = SIG_LENGTH / BLOCK_SIZE;
 
 extern void SystemClock_Config(void);
 extern float32_t inputSignal_f32_1kHz_15kHz[SIG_LENGTH];
+extern float32_t input_signal_5hz[SIG_LENGTH_2];
 
-volatile float32_t inputSample, outputSample;
+volatile float32_t inputSample, outputSample, xsample;
 
 void plot_input_signal(void);
 void plot_output_signal(void);
 void plot_both_signal(void);
+void plot_xsample_signal(void);
 
 float32_t outputSignal_f32[SIG_LENGTH];
 static float32_t firState32[BLOCK_SIZE + NUM_TAPS - 1];
@@ -53,6 +57,8 @@ int main()
 		);
 	}
 	
+	
+	// plot_xsample_signal();
 	plot_both_signal();
 	
 	while(1)
@@ -69,6 +75,20 @@ void plot_input_signal(void)
 			__nop();
 		}
 		if(i == SIG_LENGTH - 1) {
+			i = 0;
+		}
+	}
+}
+
+void plot_xsample_signal(void)
+{
+	int i,j;
+	for(i=0;i<SIG_LENGTH_2;i++) {
+		xsample = input_signal_5hz[i];
+		for(j=0;j<3000;j++) {
+			__nop();
+		}
+		if(i == SIG_LENGTH_2 - 1) {
 			i = 0;
 		}
 	}
