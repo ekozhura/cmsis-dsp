@@ -16,6 +16,9 @@
  */
 #define CMSIS_device_header "stm32f4xx.h"
 
+/*  ARM::CMSIS:RTOS:Keil RTX:4.82.0 */
+#define RTE_CMSIS_RTOS                  /* CMSIS-RTOS */
+        #define RTE_CMSIS_RTOS_RTX              /* CMSIS-RTOS Keil RTX */
 /*  Keil::Device:STM32Cube Framework:Classic:1.7.6 */
 #define RTE_DEVICE_FRAMEWORK_CLASSIC
 /*  Keil::Device:STM32Cube HAL:Common:1.7.6 */
